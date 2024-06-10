@@ -1,0 +1,108 @@
+# Visual Studio
+.vscode/
+.vscode/*
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# User-specific files (Mono Auto Generated)
+mono_crash.*
+
+# OS-generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Build Folders (you can edit the build path in your .proj file)
+bin/
+obj/
+out/
+Debug/
+Release/
+
+# NuGet
+*.nupkg
+# NuGet Symbol Packages
+*.snupkg
+# The packages folder can be ignored because of Package Restore
+**/packages/*
+# except build/, which is used as an MSBuild target.
+!**/packages/build/
+# Uncomment if necessary however generally it will be regenerated when needed
+#!**/packages/repositories.config
+
+# Windows image file caches
+Thumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Logs
+*.log
+*.tlg
+*.log1
+*.log2
+*.log3
+*.log4
+*.log5
+*.log6
+*.log7
+*.log8
+*.log9
+
+# Web server
+wwwroot/
+!.gitattributes
+!.gitignore
+
+# Optional: Comments in other languages
+# Generated class files
+*.class
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# OSX
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Tooling
+.vscode/
+*.tfignore
+.project
+.settings/
+*.sln.docstates
+
+# JetBrains Rider
+.idea/
+*.sln.iml

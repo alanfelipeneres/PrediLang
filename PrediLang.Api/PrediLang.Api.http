@@ -1,0 +1,6 @@
+@PrediLang.Api_HostAddress = http://localhost:5286
+
+GET {{PrediLang.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
