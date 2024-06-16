@@ -5,6 +5,7 @@
 # Visual Studio
 .vs/
 .vs/*
+vs/
 
 # User-specific files
 *.rsuser
@@ -110,3 +111,4 @@ Temporary Items
 # JetBrains Rider
 .idea/
 *.sln.iml
+.vs/PrediLang/DesignTimeBuild/.dtbcache.v2
