@@ -6,6 +6,11 @@
 .vs/
 .vs/*
 vs/
+.vs/PrediLang/DesignTimeBuild/.dtbcache.v2
+.vs/PrediLang/DesignTimeBuild/.dtbcache.v2
+.vs/PrediLang/v17/.futdcache.v2
+.vs/ProjectEvaluation/predilang.metadata.v7.bin
+.vs/ProjectEvaluation/predilang.projects.v7.bin
 
 # User-specific files
 *.rsuser
@@ -111,4 +116,4 @@ Temporary Items
 # JetBrains Rider
 .idea/
 *.sln.iml
-.vs/PrediLang/DesignTimeBuild/.dtbcache.v2
+
