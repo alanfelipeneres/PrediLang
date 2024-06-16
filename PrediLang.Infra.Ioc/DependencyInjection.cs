@@ -2,6 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PrediLang.Application.Interfaces;
+using PrediLang.Application.Mappings;
+using PrediLang.Application.Services;
 using PrediLang.Domain.Account;
 using PrediLang.Domain.Interfaces;
 using PrediLang.Infra.Data.Context;
@@ -34,13 +37,14 @@ namespace PrediLang.Infra.Ioc
             services.AddScoped<IComplementoRepository, ComplementoRepository>();
             services.AddScoped<IRespostaRepository, RespostaRepository>();
 
-            //services.AddScoped<IProductService, ProductService>();
-            //services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<ITemplateService, TemplateService>();
+            services.AddScoped<IComplementoService, ComplementoService>();
+            services.AddScoped<IRespostaService, RespostaService>();
 
             services.AddScoped<IAuthenticate, AuthenticateService>();
             services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();
 
-            //services.AddAutoMapper(typeof(DomainToDtoMappingProfile));
+            services.AddAutoMapper(typeof(DomainToDtoMappingProfile));
 
             return services;
         }

@@ -16,6 +16,12 @@ namespace PrediLang.Application.Services
         private ITemplateRepository _templateRepository;
         private IMapper _mapper;
 
+        public TemplateService(ITemplateRepository templateRepository, IMapper mapper)
+        {
+            _templateRepository = templateRepository;
+            _mapper = mapper;
+        }
+
         public async Task Add(TemplateDto templateDto)
         {
             var template = _mapper.Map<Template>(templateDto);
