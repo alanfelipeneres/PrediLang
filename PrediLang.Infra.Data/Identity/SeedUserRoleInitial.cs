@@ -34,7 +34,7 @@ namespace PrediLang.Infra.Data.Identity
                 user.SecurityStamp = Guid.NewGuid().ToString();
 
                 //Criando o usuário
-                IdentityResult result = _userManager.CreateAsync(user, "Numsey#2021").Result;
+                IdentityResult result = _userManager.CreateAsync(user, "PrediLang@123").Result;
 
                 if (result.Succeeded)
                 {
@@ -53,7 +53,7 @@ namespace PrediLang.Infra.Data.Identity
                 user.LockoutEnabled = false;
                 user.SecurityStamp = Guid.NewGuid().ToString();
 
-                IdentityResult result = _userManager.CreateAsync(user, "Numsey#2021").Result;
+                IdentityResult result = _userManager.CreateAsync(user, "PrediLang@123").Result;
 
                 if (result.Succeeded)
                 {
