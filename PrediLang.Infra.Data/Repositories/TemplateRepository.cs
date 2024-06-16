@@ -1,5 +1,7 @@
-﻿using PrediLang.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using PrediLang.Domain.Entities;
 using PrediLang.Domain.Interfaces;
+using PrediLang.Infra.Data.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,24 +12,35 @@ namespace PrediLang.Infra.Data.Repositories
 {
     public class TemplateRepository : ITemplateRepository
     {
-        public Task<Template> CreateAsync(Template template)
+        ApplicationDbContext _context;
+
+        public TemplateRepository(ApplicationDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task<Template> GetTemplateByIdAsync(int? id)
+        public async Task<Template> CreateAsync(Template template)
         {
-            throw new NotImplementedException();
+            _context.Add(template);
+            await _context.SaveChangesAsync();
+            return template;
         }
 
-        public Task<IEnumerable<Template>> GetTemplatesAsync()
+        public async Task<Template> GetTemplateByIdAsync(int? id)
         {
-            throw new NotImplementedException();
+            return await _context.Templates.FindAsync(id);
         }
 
-        public Task<Template> UpdateAsync(Template template)
+        public async Task<IEnumerable<Template>> GetTemplatesAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Templates.ToListAsync();
+        }
+
+        public async Task<Template> UpdateAsync(Template template)
+        {
+            _context.Update(template);
+            await _context.SaveChangesAsync();
+            return template;
         }
     }
 }

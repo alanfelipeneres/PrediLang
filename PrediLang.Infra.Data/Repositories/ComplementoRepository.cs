@@ -1,5 +1,7 @@
-﻿using PrediLang.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using PrediLang.Domain.Entities;
 using PrediLang.Domain.Interfaces;
+using PrediLang.Infra.Data.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,24 +12,35 @@ namespace PrediLang.Infra.Data.Repositories
 {
     public class ComplementoRepository : IComplementoRepository
     {
-        public Task<Complemento> CreateAsync(Complemento complemento)
+        ApplicationDbContext _context;
+
+        public ComplementoRepository(ApplicationDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task<Complemento> GetComplementoByIdAsync(int? id)
+        public async Task<Complemento> CreateAsync(Complemento complemento)
         {
-            throw new NotImplementedException();
+            _context.Add(complemento);
+            await _context.SaveChangesAsync();
+            return complemento;
         }
 
-        public Task<IEnumerable<Complemento>> GetComplementosAsync()
+        public async Task<Complemento> GetComplementoByIdAsync(int? id)
         {
-            throw new NotImplementedException();
+            return await _context.Complementos.FindAsync(id);
         }
 
-        public Task<Complemento> UpdateAsync(Complemento complemento)
+        public async Task<IEnumerable<Complemento>> GetComplementosAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Complementos.ToListAsync();
+        }
+
+        public async Task<Complemento> UpdateAsync(Complemento complemento)
+        {
+            _context.Update(complemento);
+            await _context.SaveChangesAsync();
+            return complemento;
         }
     }
 }

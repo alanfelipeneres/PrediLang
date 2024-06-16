@@ -1,5 +1,7 @@
-﻿using PrediLang.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using PrediLang.Domain.Entities;
 using PrediLang.Domain.Interfaces;
+using PrediLang.Infra.Data.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,19 +12,28 @@ namespace PrediLang.Infra.Data.Repositories
 {
     public class RespostaRepository : IRespostaRepository
     {
-        public Task<Resposta> CreateAsync(Resposta resposta)
+        ApplicationDbContext _context;
+
+        public RespostaRepository(ApplicationDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task<Resposta> GetRespostaByIdAsync(int? id)
+        public async Task<Resposta> CreateAsync(Resposta resposta)
         {
-            throw new NotImplementedException();
+            _context.Add(resposta);
+            await _context.SaveChangesAsync();
+            return resposta;
         }
 
-        public Task<IEnumerable<Resposta>> GetRespostasAsync()
+        public async Task<Resposta> GetRespostaByIdAsync(int? id)
         {
-            throw new NotImplementedException();
+            return await _context.Respostas.FindAsync(id);
+        }
+
+        public async Task<IEnumerable<Resposta>> GetRespostasAsync()
+        {
+            return await _context.Respostas.ToListAsync();
         }
     }
 }
