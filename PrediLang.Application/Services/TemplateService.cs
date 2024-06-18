@@ -22,10 +22,12 @@ namespace PrediLang.Application.Services
             _mapper = mapper;
         }
 
-        public async Task Add(TemplateDto templateDto)
+        public async Task<TemplateDto> Add(TemplateDto templateDto)
         {
             var template = _mapper.Map<Template>(templateDto);
-            await _templateRepository.CreateAsync(template);
+            template.DataRegistro = DateTime.Now;
+
+            return _mapper.Map<TemplateDto>(await _templateRepository.CreateAsync(template));
         }
 
         public async Task<TemplateDto> GetById(int? id)

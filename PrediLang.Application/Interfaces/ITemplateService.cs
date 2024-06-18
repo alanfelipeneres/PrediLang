@@ -11,7 +11,7 @@ namespace PrediLang.Application.Interfaces
     {
         Task<IEnumerable<TemplateDto>> GetTemplates();
         Task<TemplateDto> GetById(int? id);
-        Task Add(TemplateDto templateDto);
+        Task<TemplateDto> Add(TemplateDto templateDto);
         Task Update(TemplateDto templateDto);
     }
 }

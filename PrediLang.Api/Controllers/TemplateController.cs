@@ -27,5 +27,27 @@ namespace PrediLang.Api.Controllers
 
             return Ok(templates);
         }
+
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<IEnumerable<TemplateDto>>> Get(int id)
+        {
+            var templates = await _templateService.GetById(id);
+            if (templates == null)
+            {
+                return NotFound("Template não encontrado");
+            }
+
+            return Ok(templates);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<TemplateDto>> Post([FromBody] TemplateDto templateDto)
+        {
+            if(templateDto == null)
+                return BadRequest("Informações inválidas");
+
+            templateDto = await _templateService.Add(templateDto);
+            return Ok(templateDto);
+        }
     }
 }
