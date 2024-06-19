@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PrediLang.Api.Utils;
 using PrediLang.Application.DTOs;
 using PrediLang.Application.Interfaces;
+using PrediLang.Domain.Entities;
 
 namespace PrediLang.Api.Controllers
 {
@@ -19,35 +21,25 @@ namespace PrediLang.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ComplementoDto>>> Get()
         {
-            var templates = await _complementoService.GetComplementos();
-            if (templates == null)
+            var complementos = await _complementoService.GetComplementos();
+            if (complementos == null)
             {
-                return NotFound("Complemento não encontrado");
+                return NotFound(new ResponseDefault<string>(
+                    message: "Complemento não encontrado", success: false));
             }
 
-            return Ok(templates);
+            return Ok(new ResponseDefault<IEnumerable<ComplementoDto>>(complementos));
         }
-
-        //[HttpGet("{id:int}")]
-        //public async Task<ActionResult<IEnumerable<TemplateDto>>> Get(int id)
-        //{
-        //    var templates = await _complementoService.GetById(id);
-        //    if (templates == null)
-        //    {
-        //        return NotFound("Template não encontrado");
-        //    }
-
-        //    return Ok(templates);
-        //}
 
         [HttpPost]
         public async Task<ActionResult<ComplementoDto>> Post([FromBody] ComplementoDto complementoDto)
         {
             if (complementoDto == null)
-                return BadRequest("Informações inválidas");
+                return BadRequest(new ResponseDefault<string>(
+                    message: "Informações inválidas", success: false));
 
             complementoDto = await _complementoService.Add(complementoDto);
-            return Ok(complementoDto);
+            return Ok(new ResponseDefault<ComplementoDto>(complementoDto));
         }
     }
 }
