@@ -17,10 +17,12 @@ namespace PrediLang.Application.Services
             _mapper = mapper;
         }
 
-        public async Task Add(ComplementoDto complementoDto)
+        public async Task<ComplementoDto> Add(ComplementoDto complementoDto)
         {
             var complemento = _mapper.Map<Complemento>(complementoDto);
-            await _complementoRepository.CreateAsync(complemento);
+            complemento.DataRegistro = DateTime.Now;
+
+            return _mapper.Map<ComplementoDto>(await _complementoRepository.CreateAsync(complemento));
         }
 
         public async Task<ComplementoDto> GetById(int? id)

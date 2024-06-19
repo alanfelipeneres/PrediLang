@@ -15,9 +15,16 @@ namespace PrediLang.Application.DTOs
         public string Pergunta { get; set; }
         public string Resposta { get; set; }
         public string Usuario { get; set; }
-        public DateTime DataRegistro { get; set; }
+        public DateTime? DataRegistro { get; set; }
+        public string DataRegistroFormatada
+        {
+            get
+            {
+                return DataRegistro.HasValue ? DataRegistro.Value.ToString("dd/MM/yyyy HH:mm") : "";
+            }
+        }
 
         [JsonIgnore]
-        public Template Template { get; set; }
+        public Template? Template { get; set; }
     }
 }

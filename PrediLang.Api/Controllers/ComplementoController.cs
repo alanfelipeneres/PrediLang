@@ -40,14 +40,14 @@ namespace PrediLang.Api.Controllers
         //    return Ok(templates);
         //}
 
-        //[HttpPost]
-        //public async Task<ActionResult<TemplateDto>> Post([FromBody] TemplateDto templateDto)
-        //{
-        //    if(templateDto == null)
-        //        return BadRequest("Informações inválidas");
+        [HttpPost]
+        public async Task<ActionResult<ComplementoDto>> Post([FromBody] ComplementoDto complementoDto)
+        {
+            if (complementoDto == null)
+                return BadRequest("Informações inválidas");
 
-        //    templateDto = await _complementoService.Add(templateDto);
-        //    return Ok(templateDto);
-        //}
+            complementoDto = await _complementoService.Add(complementoDto);
+            return Ok(complementoDto);
+        }
     }
 }
