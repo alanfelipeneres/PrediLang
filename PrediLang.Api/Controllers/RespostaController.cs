@@ -24,25 +24,25 @@ namespace PrediLang.Api.Controllers
             var respostas = await _respostaService.GetRespostas();
             if (respostas == null)
             {
-                return NotFound(new ResponseDefault<string>(
+                return BadRequest(new ResponseDefault<string>(
                     message: "Resposta não encontrada", success: false));
             }
 
             return Ok(new ResponseDefault<IEnumerable<RespostaDto>>(respostas));
         }
 
-        //[HttpGet("{id:int}")]
-        //public async Task<ActionResult<ResponseDefault<TemplateDto>>> Get(int id)
-        //{
-        //    var respostas = await _respostaService.GetById(id);
-        //    if (respostas == null)
-        //    {
-        //        return NotFound(new ResponseDefault<string>(
-        //            message: "Template não encontrado", success: false));
-        //    }
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<ResponseDefault<RespostaDto>>> Get(int id)
+        {
+            var respostas = await _respostaService.GetById(id);
+            if (respostas == null)
+            {
+                return BadRequest(new ResponseDefault<string>(
+                    message: "Resposta não encontrado", success: false));
+            }
 
-        //    return Ok(new ResponseDefault<TemplateDto>(respostas));
-        //}
+            return Ok(new ResponseDefault<RespostaDto>(respostas));
+        }
 
         //[HttpPost]
         //public async Task<ActionResult<TemplateDto>> Post([FromBody] TemplateDto templateDto)
