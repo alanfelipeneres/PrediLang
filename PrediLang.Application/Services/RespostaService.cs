@@ -29,6 +29,13 @@ namespace PrediLang.Application.Services
             return _mapper.Map<RespostaDto>(await _respostaRepository.CreateAsync(resposta));
         }
 
+        public async Task<RespostaDto> Edit(RespostaDto templateDto)
+        {
+            var resposta = _mapper.Map<Resposta>(templateDto);
+            resposta.DataRegistro = DateTime.Now;
+            return _mapper.Map<RespostaDto>(await _respostaRepository.EditAsync(resposta));
+        }
+
         public async Task<RespostaDto> GetById(int? id)
         {
             var resposta = await _respostaRepository.GetRespostaByIdAsync(id);

@@ -26,6 +26,13 @@ namespace PrediLang.Infra.Data.Repositories
             return resposta;
         }
 
+        public async Task<Resposta> EditAsync(Resposta resposta)
+        {
+            _context.Update(resposta);
+            await _context.SaveChangesAsync();
+            return resposta;
+        }
+
         public async Task<Resposta> GetRespostaByIdAsync(int? id)
         {
             return await _context.Respostas.FindAsync(id);

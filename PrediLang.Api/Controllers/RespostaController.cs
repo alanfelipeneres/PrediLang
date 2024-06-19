@@ -54,5 +54,16 @@ namespace PrediLang.Api.Controllers
             respostaDto = await _respostaService.Add(respostaDto);
             return Ok(new ResponseDefault<RespostaDto>(respostaDto));
         }
+
+        [HttpPut]
+        public async Task<ActionResult<RespostaDto>> Put([FromBody] RespostaDto respostaDto)
+        {
+            if (respostaDto == null)
+                return BadRequest(new ResponseDefault<string>(
+                    message: "Resposta não encontrada", success: false));
+
+            respostaDto = await _respostaService.Edit(respostaDto);
+            return Ok(new ResponseDefault<RespostaDto>(respostaDto));
+        }
     }
 }
