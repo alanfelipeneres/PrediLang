@@ -18,6 +18,7 @@ namespace PrediLang.Domain.Entities
         public string Usuario { get; set; }
         public DateTime DataRegistro { get; set; }
 
+        [ForeignKey("IdTemplate")]
         public Template Template { get; set; }
     }
 }
