@@ -11,6 +11,6 @@ namespace PrediLang.Application.Interfaces
     {
         Task<IEnumerable<RespostaDto>> GetRespostas();
         Task<RespostaDto> GetById(int? id);
-        Task Add(RespostaDto templateDto);
+        Task<RespostaDto> Add(RespostaDto templateDto);
     }
 }

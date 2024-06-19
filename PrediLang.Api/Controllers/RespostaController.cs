@@ -44,15 +44,15 @@ namespace PrediLang.Api.Controllers
             return Ok(new ResponseDefault<RespostaDto>(respostas));
         }
 
-        //[HttpPost]
-        //public async Task<ActionResult<TemplateDto>> Post([FromBody] TemplateDto templateDto)
-        //{
-        //    if(templateDto == null)
-        //        return BadRequest(new ResponseDefault<string>(
-        //            message: "Template não encontrado", success: false));
+        [HttpPost]
+        public async Task<ActionResult<RespostaDto>> Post([FromBody] RespostaDto respostaDto)
+        {
+            if (respostaDto == null)
+                return BadRequest(new ResponseDefault<string>(
+                    message: "Resposta não encontrada", success: false));
 
-        //    templateDto = await _respostaService.Add(templateDto);
-        //    return Ok(new ResponseDefault<TemplateDto>(templateDto));
-        //}
+            respostaDto = await _respostaService.Add(respostaDto);
+            return Ok(new ResponseDefault<RespostaDto>(respostaDto));
+        }
     }
 }

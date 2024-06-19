@@ -24,6 +24,6 @@ namespace PrediLang.Application.DTOs
         }
 
         [JsonIgnore]
-        public Template Template { get; set; }
+        public Template? Template { get; set; }
     }
 }
