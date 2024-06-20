@@ -37,10 +37,11 @@ namespace PrediLang.Application.Services
             return _mapper.Map<IEnumerable<ComplementoDto>>(complementos);
         }
 
-        public async Task Update(ComplementoDto complementoDto)
+        public async Task<ComplementoDto> Edit(ComplementoDto complementoDto)
         {
             var complemento = _mapper.Map<Complemento>(complementoDto);
-            await _complementoRepository.UpdateAsync(complemento);
+            complemento.DataRegistro = DateTime.Now;
+            return _mapper.Map<ComplementoDto>(await _complementoRepository.EditAsync(complemento));
         }
     }
 }

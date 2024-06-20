@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using PrediLang.Api.Utils;
 using PrediLang.Application.DTOs;
 using PrediLang.Application.Interfaces;
+using PrediLang.Application.Services;
 using PrediLang.Domain.Entities;
 
 namespace PrediLang.Api.Controllers
@@ -39,6 +40,17 @@ namespace PrediLang.Api.Controllers
                     message: "Informações inválidas", success: false));
 
             complementoDto = await _complementoService.Add(complementoDto);
+            return Ok(new ResponseDefault<ComplementoDto>(complementoDto));
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<ComplementoDto>> Put([FromBody] ComplementoDto complementoDto)
+        {
+            if (complementoDto == null)
+                return BadRequest(new ResponseDefault<string>(
+                    message: "Complemento não encontrado", success: false));
+
+            complementoDto = await _complementoService.Edit(complementoDto);
             return Ok(new ResponseDefault<ComplementoDto>(complementoDto));
         }
     }

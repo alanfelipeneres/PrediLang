@@ -36,7 +36,7 @@ namespace PrediLang.Infra.Data.Repositories
             return await _context.Complementos.ToListAsync();
         }
 
-        public async Task<Complemento> UpdateAsync(Complemento complemento)
+        public async Task<Complemento> EditAsync(Complemento complemento)
         {
             _context.Update(complemento);
             await _context.SaveChangesAsync();

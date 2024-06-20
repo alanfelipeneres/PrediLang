@@ -12,6 +12,6 @@ namespace PrediLang.Application.Interfaces
         Task<IEnumerable<ComplementoDto>> GetComplementos();
         Task<ComplementoDto> GetById(int? id);
         Task<ComplementoDto> Add(ComplementoDto complementoDto);
-        Task Update(ComplementoDto complementoDto);
+        Task<ComplementoDto> Edit(ComplementoDto complementoDto);
     }
 }

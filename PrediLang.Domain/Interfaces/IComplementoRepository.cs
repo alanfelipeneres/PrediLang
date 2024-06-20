@@ -12,6 +12,6 @@ namespace PrediLang.Domain.Interfaces
         Task<IEnumerable<Complemento>> GetComplementosAsync();
         Task<Complemento> GetComplementoByIdAsync(int? id);
         Task<Complemento> CreateAsync(Complemento complemento);
-        Task<Complemento> UpdateAsync(Complemento complemento);
+        Task<Complemento> EditAsync(Complemento complemento);
     }
 }
