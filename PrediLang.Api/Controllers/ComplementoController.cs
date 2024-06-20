@@ -25,7 +25,7 @@ namespace PrediLang.Api.Controllers
             var complementos = await _complementoService.GetComplementos();
             if (complementos == null)
             {
-                return NotFound(new ResponseDefault<string>(
+                return BadRequest(new ResponseDefault<string>(
                     message: "Complemento não encontrado", success: false));
             }
 

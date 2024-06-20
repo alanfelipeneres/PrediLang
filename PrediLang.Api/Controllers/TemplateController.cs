@@ -24,7 +24,7 @@ namespace PrediLang.Api.Controllers
             var templates = await _templateService.GetTemplates();
             if (templates == null)
             {
-                return NotFound(new ResponseDefault<string>(
+                return BadRequest(new ResponseDefault<string>(
                     message: "Template não encontrado", success: false));
             }
 
@@ -37,7 +37,7 @@ namespace PrediLang.Api.Controllers
             var templates = await _templateService.GetById(id);
             if (templates == null)
             {
-                return NotFound(new ResponseDefault<string>(
+                return BadRequest(new ResponseDefault<string>(
                     message: "Template não encontrado", success: false));
             }
 
