@@ -29,6 +29,11 @@ namespace PrediLang.Application.Services
             return _mapper.Map<RespostaDto>(await _respostaRepository.CreateAsync(resposta));
         }
 
+        public async Task<IEnumerable<RespostaDto>> BuscaPaginada(RequestedPagedDto<RespostaBuscaPaginadaRequestDto> request)
+        {
+            return new List<RespostaDto>();
+        }
+
         public async Task<RespostaDto> Edit(RespostaDto templateDto)
         {
             var resposta = _mapper.Map<Resposta>(templateDto);

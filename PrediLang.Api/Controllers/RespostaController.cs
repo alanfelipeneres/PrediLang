@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PrediLang.Api.Request;
 using PrediLang.Api.Utils;
 using PrediLang.Application.DTOs;
 using PrediLang.Application.Interfaces;
@@ -53,6 +54,24 @@ namespace PrediLang.Api.Controllers
 
             respostaDto = await _respostaService.Add(respostaDto);
             return Ok(new ResponseDefault<RespostaDto>(respostaDto));
+        }
+
+        [HttpPost("buscaPaginada")]
+        public async Task<ActionResult<ResponsePaged<List<RespostaDto>>>> PostBuscaPaginada([FromBody] RequestedPagedDto<RespostaBuscaPaginadaRequestDto> request)
+        {
+            if (request == null)
+                return BadRequest(new ResponseDefault<string>(
+                    message: "Resposta não encontrada", success: false));
+
+
+            var response = await _respostaService.BuscaPaginada(request);
+            var responsePaged = new ResponsePaged<RespostaDto>(
+                (IEnumerable<RespostaDto>)response,
+                request.page,
+                request.totalPorPage,
+                request.sortedBy);
+
+            return Ok(responsePaged);
         }
 
         [HttpPut]
