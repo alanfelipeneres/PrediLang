@@ -29,9 +29,25 @@ namespace PrediLang.Application.Services
             return _mapper.Map<RespostaDto>(await _respostaRepository.CreateAsync(resposta));
         }
 
-        public async Task<IEnumerable<RespostaDto>> BuscaPaginada(RequestedPagedDto<RespostaBuscaPaginadaRequestDto> request)
+        public async Task<IEnumerable<RespostaDto>> FindRespostas(RequestedPagedDto<RespostaBuscaPaginadaRequestDto> request)
         {
-            return new List<RespostaDto>();
+            DateTime dtRegistroIni;
+            DateTime dtRegistroFim;
+
+            var respostas = await _respostaRepository.FindRespostasAsync(
+                request.data.idResposta,
+                request.data.idTemplate,
+                request.data.descricao,
+                request.data.usuario,
+                DateTime.TryParse(request.data.dataRegistroInicio, out dtRegistroIni) ? dtRegistroIni : DateTime.MinValue,
+                DateTime.TryParse(request.data.dataRegistroFim, out dtRegistroFim) ? dtRegistroFim : DateTime.MinValue,
+                request.page,
+                request.pageSize,
+                request.sortedBy);
+
+            IEnumerable<RespostaDto> result = _mapper.Map<IEnumerable<RespostaDto>>(respostas);
+
+            return result;
         }
 
         public async Task<RespostaDto> Edit(RespostaDto templateDto)
@@ -52,5 +68,6 @@ namespace PrediLang.Application.Services
             var respostas = await _respostaRepository.GetRespostasAsync();
             return _mapper.Map<IEnumerable<RespostaDto>>(respostas);
         }
+
     }
 }

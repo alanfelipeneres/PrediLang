@@ -13,5 +13,15 @@ namespace PrediLang.Domain.Interfaces
         Task<Resposta> GetRespostaByIdAsync(int? id);
         Task<Resposta> CreateAsync(Resposta resposta);
         Task<Resposta> EditAsync(Resposta resposta);
+        Task<IEnumerable<Resposta>> FindRespostasAsync(
+            int? idResposta,
+            int? idTemplate,
+            string? resposta,
+            string? usuario,
+            DateTime dataRegistroInicio,
+            DateTime dataRegistroFim,
+            int? page,
+            int? totalPerPage,
+            string? sortedBy);
     }
 }

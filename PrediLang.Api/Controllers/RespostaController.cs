@@ -56,19 +56,19 @@ namespace PrediLang.Api.Controllers
             return Ok(new ResponseDefault<RespostaDto>(respostaDto));
         }
 
-        [HttpPost("buscaPaginada")]
-        public async Task<ActionResult<ResponsePaged<List<RespostaDto>>>> PostBuscaPaginada([FromBody] RequestedPagedDto<RespostaBuscaPaginadaRequestDto> request)
+        [HttpPost("buscarPaginado")]
+        public async Task<ActionResult<ResponsePaged<List<RespostaDto>>>> PostBuscarPaginado([FromBody] RequestedPagedDto<RespostaBuscaPaginadaRequestDto> request)
         {
             if (request == null)
                 return BadRequest(new ResponseDefault<string>(
                     message: "Resposta não encontrada", success: false));
 
 
-            var response = await _respostaService.BuscaPaginada(request);
+            var response = await _respostaService.FindRespostas(request);
             var responsePaged = new ResponsePaged<RespostaDto>(
-                (IEnumerable<RespostaDto>)response,
+                response,
                 request.page,
-                request.totalPorPage,
+                request.pageSize,
                 request.sortedBy);
 
             return Ok(responsePaged);

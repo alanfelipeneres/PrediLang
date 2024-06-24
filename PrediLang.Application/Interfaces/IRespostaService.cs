@@ -13,6 +13,6 @@ namespace PrediLang.Application.Interfaces
         Task<RespostaDto> GetById(int? id);
         Task<RespostaDto> Add(RespostaDto templateDto);
         Task<RespostaDto> Edit(RespostaDto templateDto);
-        Task<IEnumerable<RespostaDto>> BuscaPaginada(RequestedPagedDto<RespostaBuscaPaginadaRequestDto> request);
+        Task<IEnumerable<RespostaDto>> FindRespostas(RequestedPagedDto<RespostaBuscaPaginadaRequestDto> request);
     }
 }

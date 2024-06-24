@@ -4,18 +4,18 @@ namespace PrediLang.Api.Utils
 {
     public class ResponsePaged<T>
     {
-        public ResponsePaged(IEnumerable<T> Data, int Page, int TotalPerPage, string SortedBy)
+        public ResponsePaged(IEnumerable<T> Data, int? Page, int? PageSize, string? SortedBy)
         {
             data = Data;
-            page = Page;
-            totalPerPage = TotalPerPage;
+            page = Page.HasValue ? Page.Value : 1;
+            pageSize = PageSize.HasValue ? PageSize.Value : 10;
             sortedBy = SortedBy;
         }
 
         public IEnumerable<T> data { get; set; }
-        public int page { get; set; }
-        public int totalPerPage { get; set; }
-        public int total { get; set; }
+        public int? page { get; set; }
+        public int? pageSize { get; set; }
+        //public int? total { get; set; }
         public string sortedBy { get; set; }
 
         private bool? _success;
