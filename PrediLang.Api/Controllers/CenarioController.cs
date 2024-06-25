@@ -10,11 +10,11 @@ namespace PrediLang.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RespostaController : ControllerBase
+    public class CenarioController : ControllerBase
     {
         private readonly ICenarioService _respostaService;
 
-        public RespostaController(ICenarioService respostaService)
+        public CenarioController(ICenarioService respostaService)
         {
             _respostaService = respostaService;
         }
@@ -26,7 +26,7 @@ namespace PrediLang.Api.Controllers
             if (respostas == null)
             {
                 return BadRequest(new ResponseDefault<string>(
-                    message: "Cenario não encontrada", success: false));
+                    message: "Cenario não encontrado", success: false));
             }
 
             return Ok(new ResponseDefault<IEnumerable<CenarioDto>>(respostas));
@@ -50,18 +50,19 @@ namespace PrediLang.Api.Controllers
         {
             if (respostaDto == null)
                 return BadRequest(new ResponseDefault<string>(
-                    message: "Cenario não encontrada", success: false));
+                    message: "Cenario não encontrado", success: false));
 
             respostaDto = await _respostaService.Add(respostaDto);
             return Ok(new ResponseDefault<CenarioDto>(respostaDto));
         }
 
         [HttpPost("buscarPaginado")]
-        public async Task<ActionResult<ResponsePaged<List<CenarioDto>>>> PostBuscarPaginado([FromBody] RequestedPagedDto<CenarioBuscaPaginadaRequestDto> request)
+        public async Task<ActionResult<ResponsePaged<List<CenarioDto>>>> PostBuscarPaginado(
+            [FromBody] RequestedPagedDto<CenarioBuscaPaginadaRequestDto> request)
         {
             if (request == null)
                 return BadRequest(new ResponseDefault<string>(
-                    message: "Cenario não encontrada", success: false));
+                    message: "Cenario não encontrado", success: false));
 
 
             var response = await _respostaService.FindCenarios(request);
@@ -79,7 +80,7 @@ namespace PrediLang.Api.Controllers
         {
             if (respostaDto == null)
                 return BadRequest(new ResponseDefault<string>(
-                    message: "Cenario não encontrada", success: false));
+                    message: "Cenario não encontrado", success: false));
 
             respostaDto = await _respostaService.Edit(respostaDto);
             return Ok(new ResponseDefault<CenarioDto>(respostaDto));

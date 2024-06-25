@@ -42,6 +42,7 @@ namespace PrediLang.Infra.Data.Repositories
         public async Task<IEnumerable<Cenario>> FindCenariosAsync(
             int? idCenario,
             int? idTemplate,
+            string? pergunta,
             string? resposta,
             string? usuario,
             DateTime dataRegistroInicio,
@@ -58,6 +59,9 @@ namespace PrediLang.Infra.Data.Repositories
 
             if (idTemplate.HasValue && idTemplate > 0)
                 query = query.Where(x => x.IdTemplate == idTemplate);
+
+            if (!string.IsNullOrWhiteSpace(pergunta))
+                query = query.Where(x => x.Pergunta.Contains(pergunta));
 
             if (!string.IsNullOrWhiteSpace(resposta))
                 query = query.Where(x => x.Pergunta.Contains(resposta));

@@ -33,6 +33,7 @@ namespace PrediLang.Application.Services
                 request.data.idCenario,
                 request.data.idTemplate,
                 request.data.pergunta,
+                request.data.resposta,
                 request.data.usuario,
                 DateTime.TryParse(request.data.dataRegistroInicio, out dtRegistroIni) ? dtRegistroIni : DateTime.MinValue,
                 DateTime.TryParse(request.data.dataRegistroFim, out dtRegistroFim) ? dtRegistroFim : DateTime.MinValue,

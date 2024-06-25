@@ -14,8 +14,9 @@ namespace PrediLang.Domain.Interfaces
         Task<Cenario> CreateAsync(Cenario resposta);
         Task<Cenario> EditAsync(Cenario resposta);
         Task<IEnumerable<Cenario>> FindCenariosAsync(
-            int? idResposta,
+            int? idCenario,
             int? idTemplate,
+            string? pergunta,
             string? resposta,
             string? usuario,
             DateTime dataRegistroInicio,
