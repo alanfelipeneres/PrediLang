@@ -15,7 +15,7 @@ namespace PrediLang.Application.Mappings
         {
             CreateMap<Template, TemplateDto>().ReverseMap();
             CreateMap<Complemento, ComplementoDto>().ReverseMap();
-            CreateMap<Resposta, RespostaDto>().ReverseMap();
+            CreateMap<Cenario, CenarioDto>().ReverseMap();
         }
     }
 }

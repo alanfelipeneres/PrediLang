@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace PrediLang.Domain.Interfaces
 {
-    public interface IRespostaRepository
+    public interface ICenarioRepository
     {
-        Task<IEnumerable<Resposta>> GetRespostasAsync();
-        Task<Resposta> GetRespostaByIdAsync(int? id);
-        Task<Resposta> CreateAsync(Resposta resposta);
-        Task<Resposta> EditAsync(Resposta resposta);
-        Task<IEnumerable<Resposta>> FindRespostasAsync(
+        Task<IEnumerable<Cenario>> GetCenariosAsync();
+        Task<Cenario> GetCenarioByIdAsync(int? id);
+        Task<Cenario> CreateAsync(Cenario resposta);
+        Task<Cenario> EditAsync(Cenario resposta);
+        Task<IEnumerable<Cenario>> FindCenariosAsync(
             int? idResposta,
             int? idTemplate,
             string? resposta,

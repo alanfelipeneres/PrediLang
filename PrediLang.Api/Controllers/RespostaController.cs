@@ -12,60 +12,60 @@ namespace PrediLang.Api.Controllers
     [ApiController]
     public class RespostaController : ControllerBase
     {
-        private readonly IRespostaService _respostaService;
+        private readonly ICenarioService _respostaService;
 
-        public RespostaController(IRespostaService respostaService)
+        public RespostaController(ICenarioService respostaService)
         {
             _respostaService = respostaService;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<RespostaDto>>> Get()
+        public async Task<ActionResult<IEnumerable<CenarioDto>>> Get()
         {
-            var respostas = await _respostaService.GetRespostas();
+            var respostas = await _respostaService.GetCenarios();
             if (respostas == null)
             {
                 return BadRequest(new ResponseDefault<string>(
-                    message: "Resposta não encontrada", success: false));
+                    message: "Cenario não encontrada", success: false));
             }
 
-            return Ok(new ResponseDefault<IEnumerable<RespostaDto>>(respostas));
+            return Ok(new ResponseDefault<IEnumerable<CenarioDto>>(respostas));
         }
 
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<ResponseDefault<RespostaDto>>> Get(int id)
+        public async Task<ActionResult<ResponseDefault<CenarioDto>>> Get(int id)
         {
             var respostas = await _respostaService.GetById(id);
             if (respostas == null)
             {
                 return BadRequest(new ResponseDefault<string>(
-                    message: "Resposta não encontrado", success: false));
+                    message: "Cenario não encontrado", success: false));
             }
 
-            return Ok(new ResponseDefault<RespostaDto>(respostas));
+            return Ok(new ResponseDefault<CenarioDto>(respostas));
         }
 
         [HttpPost]
-        public async Task<ActionResult<RespostaDto>> Post([FromBody] RespostaDto respostaDto)
+        public async Task<ActionResult<CenarioDto>> Post([FromBody] CenarioDto respostaDto)
         {
             if (respostaDto == null)
                 return BadRequest(new ResponseDefault<string>(
-                    message: "Resposta não encontrada", success: false));
+                    message: "Cenario não encontrada", success: false));
 
             respostaDto = await _respostaService.Add(respostaDto);
-            return Ok(new ResponseDefault<RespostaDto>(respostaDto));
+            return Ok(new ResponseDefault<CenarioDto>(respostaDto));
         }
 
         [HttpPost("buscarPaginado")]
-        public async Task<ActionResult<ResponsePaged<List<RespostaDto>>>> PostBuscarPaginado([FromBody] RequestedPagedDto<RespostaBuscaPaginadaRequestDto> request)
+        public async Task<ActionResult<ResponsePaged<List<CenarioDto>>>> PostBuscarPaginado([FromBody] RequestedPagedDto<CenarioBuscaPaginadaRequestDto> request)
         {
             if (request == null)
                 return BadRequest(new ResponseDefault<string>(
-                    message: "Resposta não encontrada", success: false));
+                    message: "Cenario não encontrada", success: false));
 
 
-            var response = await _respostaService.FindRespostas(request);
-            var responsePaged = new ResponsePaged<RespostaDto>(
+            var response = await _respostaService.FindCenarios(request);
+            var responsePaged = new ResponsePaged<CenarioDto>(
                 response,
                 request.page,
                 request.pageSize,
@@ -75,14 +75,14 @@ namespace PrediLang.Api.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<RespostaDto>> Put([FromBody] RespostaDto respostaDto)
+        public async Task<ActionResult<CenarioDto>> Put([FromBody] CenarioDto respostaDto)
         {
             if (respostaDto == null)
                 return BadRequest(new ResponseDefault<string>(
-                    message: "Resposta não encontrada", success: false));
+                    message: "Cenario não encontrada", success: false));
 
             respostaDto = await _respostaService.Edit(respostaDto);
-            return Ok(new ResponseDefault<RespostaDto>(respostaDto));
+            return Ok(new ResponseDefault<CenarioDto>(respostaDto));
         }
     }
 }

@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace PrediLang.Application.DTOs
 {
-    public class RespostaDto
+    public class CenarioDto
     {
-        public int IdResposta { get; set; }
+        public int IdCenario { get; set; }
         public int IdTemplate { get; set; }
-        public string Descricao { get; set; }
+        public string Pergunta { get; set; }
         public string Usuario { get; set; }
         public DateTime? DataRegistro { get; set; }
         public string DataRegistroFormatada

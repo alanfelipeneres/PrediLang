@@ -18,7 +18,7 @@ namespace PrediLang.Infra.Data.Context
 
         public DbSet<Template> Templates { get; set; }
         public DbSet<Complemento> Complementos { get; set; }
-        public DbSet<Resposta> Respostas { get; set; }
+        public DbSet<Cenario> Cenarios { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

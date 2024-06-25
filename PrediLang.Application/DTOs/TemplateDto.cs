@@ -23,7 +23,7 @@ namespace PrediLang.Application.DTOs
         }
 
         [JsonIgnore]
-        public ICollection<Resposta>? Respostas { get; set; }
+        public ICollection<Cenario>? Cenarios { get; set; }
         [JsonIgnore]
         public ICollection<Complemento>? Complementos { get; set; }
     }

@@ -17,7 +17,7 @@ namespace PrediLang.Domain.Entities
         public string Usuario { get; set; }
         public DateTime DataRegistro { get; set; }
 
-        public ICollection<Resposta> Respostas { get; set; }
+        public ICollection<Cenario> Respostas { get; set; }
         public ICollection<Complemento> Complementos { get; set; }
     }
 }

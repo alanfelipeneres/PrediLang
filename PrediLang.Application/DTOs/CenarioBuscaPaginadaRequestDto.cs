@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace PrediLang.Application.DTOs
 {
-    public class RespostaBuscaPaginadaRequestDto
+    public class CenarioBuscaPaginadaRequestDto
     {
-        public int? idResposta { get; set; }
+        public int? idCenario { get; set; }
         public int? idTemplate { get; set; }
-        public string? descricao { get; set; }
+        public string? pergunta { get; set; }
         public string? usuario { get; set; }
         public string? dataRegistroInicio { get; set; }
         public string? dataRegistroFim { get; set; }

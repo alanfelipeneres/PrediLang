@@ -35,11 +35,11 @@ namespace PrediLang.Infra.Ioc
 
             services.AddScoped<ITemplateRepository, TemplateRepository>();
             services.AddScoped<IComplementoRepository, ComplementoRepository>();
-            services.AddScoped<IRespostaRepository, RespostaRepository>();
+            services.AddScoped<ICenarioRepository, CenarioRepository>();
 
             services.AddScoped<ITemplateService, TemplateService>();
             services.AddScoped<IComplementoService, ComplementoService>();
-            services.AddScoped<IRespostaService, RespostaService>();
+            services.AddScoped<ICenarioService, CenarioService>();
 
             services.AddScoped<IAuthenticate, AuthenticateService>();
             services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();

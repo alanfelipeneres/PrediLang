@@ -6,41 +6,41 @@ using System.Linq.Dynamic.Core;
 
 namespace PrediLang.Infra.Data.Repositories
 {
-    public class RespostaRepository : IRespostaRepository
+    public class CenarioRepository : ICenarioRepository
     {
         ApplicationDbContext _context;
 
-        public RespostaRepository(ApplicationDbContext context)
+        public CenarioRepository(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public async Task<Resposta> CreateAsync(Resposta resposta)
+        public async Task<Cenario> CreateAsync(Cenario cenario)
         {
-            _context.Add(resposta);
+            _context.Add(cenario);
             await _context.SaveChangesAsync();
-            return resposta;
+            return cenario;
         }
 
-        public async Task<Resposta> EditAsync(Resposta resposta)
+        public async Task<Cenario> EditAsync(Cenario cenario)
         {
-            _context.Update(resposta);
+            _context.Update(cenario);
             await _context.SaveChangesAsync();
-            return resposta;
+            return cenario;
         }
 
-        public async Task<Resposta> GetRespostaByIdAsync(int? id)
+        public async Task<Cenario> GetCenarioByIdAsync(int? id)
         {
-            return await _context.Respostas.FindAsync(id);
+            return await _context.Cenarios.FindAsync(id);
         }
 
-        public async Task<IEnumerable<Resposta>> GetRespostasAsync()
+        public async Task<IEnumerable<Cenario>> GetCenariosAsync()
         {
-            return await _context.Respostas.ToListAsync();
+            return await _context.Cenarios.ToListAsync();
         }
 
-        public async Task<IEnumerable<Resposta>> FindRespostasAsync(
-            int? idResposta,
+        public async Task<IEnumerable<Cenario>> FindCenariosAsync(
+            int? idCenario,
             int? idTemplate,
             string? resposta,
             string? usuario,
@@ -50,17 +50,17 @@ namespace PrediLang.Infra.Data.Repositories
             int? pageSize = 10,
             string? sortedBy = null)
         {
-            List<Resposta> result = new List<Resposta>();
-            IQueryable<Resposta> query = _context.Respostas;
+            List<Cenario> result = new List<Cenario>();
+            IQueryable<Cenario> query = _context.Cenarios;
 
-            if(idResposta.HasValue && idResposta > 0)
-                query = query.Where(x => x.IdResposta == idResposta);
+            if(idCenario.HasValue && idCenario > 0)
+                query = query.Where(x => x.IdCenario == idCenario);
 
             if (idTemplate.HasValue && idTemplate > 0)
                 query = query.Where(x => x.IdTemplate == idTemplate);
 
             if (!string.IsNullOrWhiteSpace(resposta))
-                query = query.Where(x => x.Descricao.Contains(resposta));
+                query = query.Where(x => x.Pergunta.Contains(resposta));
 
             if (!string.IsNullOrWhiteSpace(usuario))
                 query = query.Where(x => x.Usuario.Contains(usuario));
@@ -72,7 +72,7 @@ namespace PrediLang.Infra.Data.Repositories
                 query = query.Where(x => x.DataRegistro <= dataRegistroFim);
 
             query = query
-                .OrderBy(String.IsNullOrWhiteSpace(sortedBy) ? "idResposta" : sortedBy)
+                .OrderBy(String.IsNullOrWhiteSpace(sortedBy) ? "idCenario" : sortedBy)
                 .Skip((page.HasValue ? page.Value - 1 : 0) * (pageSize.HasValue ? pageSize.Value : 10))
                 .Take(pageSize.HasValue ? pageSize.Value : 10);
 

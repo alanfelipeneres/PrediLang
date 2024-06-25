@@ -2,11 +2,11 @@
 
 namespace PrediLang.Api.Request
 {
-    public class RespostaBuscaPaginadaRequest : RequestPaged<RespostaBuscaPaginadaRequest>
+    public class CenarioBuscaPaginadaRequest : RequestPaged<CenarioBuscaPaginadaRequest>
     {
-        public int idResposta { get; set; }
+        public int idCenario { get; set; }
         public int idTemplate { get; set; }
-        public string descricao { get; set; }
+        public string pergunta { get; set; }
         public string usuario { get; set; }
         public string dataRegistro { get; set; }
     }
