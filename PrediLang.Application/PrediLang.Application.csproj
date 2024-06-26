@@ -12,6 +12,11 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="IronPython" Version="3.4.1" />
+    <PackageReference Include="python" Version="3.13.0-b2" />
+    <PackageReference Include="Python.Runtime" Version="2.7.9" />
+    <PackageReference Include="pythonnet" Version="3.0.3" />
+    <PackageReference Include="pythonx86" Version="3.13.0-b2" />
   </ItemGroup>
 
 </Project>

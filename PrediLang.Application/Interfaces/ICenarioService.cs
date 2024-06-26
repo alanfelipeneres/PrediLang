@@ -14,5 +14,6 @@ namespace PrediLang.Application.Interfaces
         Task<CenarioDto> Add(CenarioDto cenarioDto);
         Task<CenarioDto> Edit(CenarioDto cenarioDto);
         Task<IEnumerable<CenarioDto>> FindCenarios(RequestedPagedDto<CenarioBuscaPaginadaRequestDto> request);
+        Task<string> CreateResposta(string pergunta);
     }
 }

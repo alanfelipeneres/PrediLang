@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrediLang.Domain", "PrediLang.Domain\PrediLang.Domain.csproj", "{C4CF709D-B016-4E6F-9911-C83C6A6B7C15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrediLang.Domain", "PrediLang.Domain\PrediLang.Domain.csproj", "{C4CF709D-B016-4E6F-9911-C83C6A6B7C15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrediLang.Infra.Ioc", "PrediLang.Infra.Ioc\PrediLang.Infra.Ioc.csproj", "{BA0644FA-9FF0-4D30-974A-EF752D8F3193}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrediLang.Infra.Ioc", "PrediLang.Infra.Ioc\PrediLang.Infra.Ioc.csproj", "{BA0644FA-9FF0-4D30-974A-EF752D8F3193}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrediLang.Infra.Data", "PrediLang.Infra.Data\PrediLang.Infra.Data.csproj", "{1B629808-8A47-4732-AC47-C8324879C2FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrediLang.Infra.Data", "PrediLang.Infra.Data\PrediLang.Infra.Data.csproj", "{1B629808-8A47-4732-AC47-C8324879C2FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrediLang.Application", "PrediLang.Application\PrediLang.Application.csproj", "{0CF0CE65-6DF5-4A86-928D-4091774804F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrediLang.Application", "PrediLang.Application\PrediLang.Application.csproj", "{0CF0CE65-6DF5-4A86-928D-4091774804F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrediLang.Domain.Test", "PrediLang.Domain.Test\PrediLang.Domain.Test.csproj", "{A30918FA-B666-42A7-A979-3F1EEB730F16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrediLang.Domain.Test", "PrediLang.Domain.Test\PrediLang.Domain.Test.csproj", "{A30918FA-B666-42A7-A979-3F1EEB730F16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrediLang.Api", "PrediLang.Api\PrediLang.Api.csproj", "{35597BD2-6198-421A-95B2-BD21E34C1428}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrediLang.Api", "PrediLang.Api\PrediLang.Api.csproj", "{35597BD2-6198-421A-95B2-BD21E34C1428}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PrediLang.LangChain", "PrediLang.LangChain\PrediLang.LangChain.pyproj", "{8735B817-41C4-4C08-8B86-6E9E1CB82217}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,8 @@ Global
 		{35597BD2-6198-421A-95B2-BD21E34C1428}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35597BD2-6198-421A-95B2-BD21E34C1428}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35597BD2-6198-421A-95B2-BD21E34C1428}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8735B817-41C4-4C08-8B86-6E9E1CB82217}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8735B817-41C4-4C08-8B86-6E9E1CB82217}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

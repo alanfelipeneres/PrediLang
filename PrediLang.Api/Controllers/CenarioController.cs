@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PrediLang.Api.Request;
 using PrediLang.Api.Utils;
@@ -13,10 +14,12 @@ namespace PrediLang.Api.Controllers
     public class CenarioController : ControllerBase
     {
         private readonly ICenarioService _respostaService;
+        private readonly IMapper _mapper;
 
-        public CenarioController(ICenarioService respostaService)
+        public CenarioController(ICenarioService respostaService, IMapper mapper)
         {
             _respostaService = respostaService;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -46,14 +49,15 @@ namespace PrediLang.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<CenarioDto>> Post([FromBody] CenarioDto respostaDto)
+        public async Task<ActionResult<CenarioDto>> Post([FromBody] CenarioPostRequest request)
         {
-            if (respostaDto == null)
+            if (request == null)
                 return BadRequest(new ResponseDefault<string>(
                     message: "Cenario não encontrado", success: false));
 
-            respostaDto = await _respostaService.Add(respostaDto);
-            return Ok(new ResponseDefault<CenarioDto>(respostaDto));
+            CenarioDto cenarioDto = _mapper.Map<CenarioDto>(request);
+            cenarioDto = await _respostaService.Add(cenarioDto);
+            return Ok(new ResponseDefault<CenarioDto>(cenarioDto));
         }
 
         [HttpPost("buscarPaginado")]

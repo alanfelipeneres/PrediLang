@@ -2,7 +2,7 @@
 
 namespace PrediLang.Api.Request
 {
-    public class CenarioBuscaPaginadaRequest : RequestPaged<CenarioBuscaPaginadaRequest>
+    public class CenarioBuscarPaginadoRequest : RequestPaged<CenarioBuscarPaginadoRequest>
     {
         public int idCenario { get; set; }
         public int idTemplate { get; set; }
