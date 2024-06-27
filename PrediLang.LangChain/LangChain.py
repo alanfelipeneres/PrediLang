@@ -5,17 +5,17 @@ from langchain.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
 import os
 from langchain_community.document_loaders import CSVLoader
-from langchain_core.runnables import RunnableMap  # Importar RunnableMap
+from langchain_core.runnables import RunnableMap  
+from langchain.schema import Document
 
 # Verificar se a variável OPENAI_API_KEY está configurada corretamente
 def initialize_openai(api_key):
     os.environ['OPENAI_API_KEY'] = api_key
 
-def generate_response(message, api_key, template):
+def generate_response(message, api_key, template, complements):
     initialize_openai(api_key)
     
-    loader = CSVLoader(file_path="D:\\Estudos\\PrediLang\\PrediLang.LangChain\\knowlege_base.csv")
-    documents = loader.load()
+    documents = [Document(page_content=row["resposta"], metadata={"pergunta": row["pergunta"]}) for row in complements]
     
     embeddings = OpenAIEmbeddings()
     db = FAISS.from_documents(documents, embeddings)

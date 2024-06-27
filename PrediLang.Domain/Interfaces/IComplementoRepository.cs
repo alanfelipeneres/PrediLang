@@ -10,6 +10,7 @@ namespace PrediLang.Domain.Interfaces
     public interface IComplementoRepository
     {
         Task<IEnumerable<Complemento>> GetComplementosAsync();
+        Task<IEnumerable<Complemento>> GetComplementosByIdTemplateAsync(int idTemplate);
         Task<Complemento> GetComplementoByIdAsync(int? id);
         Task<Complemento> CreateAsync(Complemento complemento);
         Task<Complemento> EditAsync(Complemento complemento);

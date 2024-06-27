@@ -18,12 +18,14 @@ namespace PrediLang.Application.Services
         private IMapper _mapper;
         private readonly string _pythonFile = "..\\PrediLang.LangChain\\PrediLang.LangChain.py";
         private ITemplateService _templateService;
+        private IComplementoService _complementoService;
 
-        public CenarioService(ICenarioRepository cenarioRepository, IMapper mapper, ITemplateService templateService)
+        public CenarioService(ICenarioRepository cenarioRepository, IMapper mapper, ITemplateService templateService, IComplementoService complementoService)
         {
             _cenarioRepository = cenarioRepository;
             _mapper = mapper;
-            _templateService = templateService; 
+            _templateService = templateService;
+            _complementoService = complementoService;
         }
 
         public async Task<CenarioDto> Add(CenarioDto cenarioDto)
@@ -81,6 +83,8 @@ namespace PrediLang.Application.Services
             string pythonDllPath = @"C:\Users\alanf\AppData\Local\Programs\Python\Python311\python311.dll";
             string keyOpenIA = "";
             var template = await _templateService.GetById((int)EnumTemplate.Default);
+            var listDicComplemento = await _complementoService.GetByIdTemplateAsDictionary((int)EnumTemplate.Default);
+            
             Environment.SetEnvironmentVariable("PYTHONNET_PYDLL", pythonDllPath);
 
             // Inicializar o Python Engine
@@ -97,7 +101,7 @@ namespace PrediLang.Application.Services
                 dynamic script = Py.Import("LangChain");
 
                 // Chamar a função Python
-                result = script.generate_response(pergunta, keyOpenIA, template.Descricao);
+                result = script.generate_response(pergunta, keyOpenIA, template.Descricao, listDicComplemento);
             }
 
             return result.content.As<string>();

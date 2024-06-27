@@ -42,5 +42,10 @@ namespace PrediLang.Infra.Data.Repositories
             await _context.SaveChangesAsync();
             return complemento;
         }
+
+        public async Task<IEnumerable<Complemento>> GetComplementosByIdTemplateAsync(int idTemplate)
+        {
+            return await _context.Complementos.Where(x => x.IdTemplate == idTemplate).ToListAsync();
+        }
     }
 }
