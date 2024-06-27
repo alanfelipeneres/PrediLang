@@ -17,11 +17,13 @@ namespace PrediLang.Application.Services
         private ICenarioRepository _cenarioRepository;
         private IMapper _mapper;
         private readonly string _pythonFile = "..\\PrediLang.LangChain\\PrediLang.LangChain.py";
+        private ITemplateService _templateService;
 
-        public CenarioService(ICenarioRepository cenarioRepository, IMapper mapper)
+        public CenarioService(ICenarioRepository cenarioRepository, IMapper mapper, ITemplateService templateService)
         {
             _cenarioRepository = cenarioRepository;
             _mapper = mapper;
+            _templateService = templateService; 
         }
 
         public async Task<CenarioDto> Add(CenarioDto cenarioDto)
@@ -78,6 +80,7 @@ namespace PrediLang.Application.Services
         {
             string pythonDllPath = @"C:\Users\alanf\AppData\Local\Programs\Python\Python311\python311.dll";
             string keyOpenIA = "";
+            var template = await _templateService.GetById((int)EnumTemplate.Default);
             Environment.SetEnvironmentVariable("PYTHONNET_PYDLL", pythonDllPath);
 
             // Inicializar o Python Engine
@@ -94,7 +97,7 @@ namespace PrediLang.Application.Services
                 dynamic script = Py.Import("LangChain");
 
                 // Chamar a função Python
-                result = script.generate_response(pergunta, keyOpenIA);
+                result = script.generate_response(pergunta, keyOpenIA, template.Descricao);
             }
 
             return result.content.As<string>();
