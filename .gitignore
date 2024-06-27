@@ -34,6 +34,10 @@ Thumbs.db
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt
 
+# Python
+__pycache__/
+__pycache__/*
+
 # Build Folders (you can edit the build path in your .proj file)
 bin/
 obj/
