@@ -80,29 +80,25 @@ namespace PrediLang.Application.Services
 
         public async Task<string> CreateResposta(string pergunta)
         {
-            string pythonDllPath = @"C:\Users\alanf\AppData\Local\Programs\Python\Python311\python311.dll";
-            string keyOpenIA = "";
+            string pythonDllPath = AppSettings.GetValue("Python:DLL");
+            string keyOpenIA = Environment.GetEnvironmentVariable("OPEN_AI_KEY");
             var template = await _templateService.GetById((int)EnumTemplate.Default);
             var listDicComplemento = await _complementoService.GetByIdTemplateAsDictionary((int)EnumTemplate.Default);
-            
+
             Environment.SetEnvironmentVariable("PYTHONNET_PYDLL", pythonDllPath);
 
             // Inicializar o Python Engine
             PythonEngine.Initialize();
             dynamic result;
+            dynamic sys = Py.Import("sys");
 
-            using (Py.GIL()) // Adquirir o GIL (Global Interpreter Lock)
-            {
-                dynamic sys = Py.Import("sys");
+            string scriptDirectory = @"..\PrediLang.LangChain";
+            sys.path.append(scriptDirectory);
 
-                string scriptDirectory = @"..\PrediLang.LangChain";
-                sys.path.append(scriptDirectory);
+            dynamic script = Py.Import("LangChain");
 
-                dynamic script = Py.Import("LangChain");
-
-                // Chamar a função Python
-                result = script.generate_response(pergunta, keyOpenIA, template.Descricao, listDicComplemento);
-            }
+            // Chamar a função Python
+            result = script.generate_response(pergunta, keyOpenIA, template.Descricao, listDicComplemento);
 
             return result.content.As<string>();
         }
