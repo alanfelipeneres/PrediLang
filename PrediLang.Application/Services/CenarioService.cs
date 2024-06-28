@@ -1,13 +1,9 @@
 ﻿using AutoMapper;
-using IronPython.Hosting;
-using Microsoft.Scripting.Hosting;
 using PrediLang.Application.DTOs;
 using PrediLang.Application.Interfaces;
 using PrediLang.Application.Util;
 using PrediLang.Domain.Entities;
 using PrediLang.Domain.Interfaces;
-using System;
-using System.Collections;
 using Python.Runtime;
 
 namespace PrediLang.Application.Services
